@@ -64,7 +64,7 @@ import {Listm, ListItem, FormValidationMessage} from 'react-native-elements';
          };
      }
      componentDidMount() {
-         axios.get('http://10.106.65.199:4002/product')
+         axios.get('http://localhost:4002/product')
             .then(res => {
                 const product = [];
                 res.data.forEach(data => {
@@ -86,13 +86,13 @@ import {Listm, ListItem, FormValidationMessage} from 'react-native-elements';
     }
     deleteProduct(dProduct) {
         //Running Query to Remove Product
-        axios.delete('http://10.106.65.199:4002/product/remove/' +dProduct, { data: { productid: dProduct} });
-        console.log('http://10.106.65.199:4002/product/remove/'+dProduct);
+        axios.delete('http://localhost:4002/product/remove/' +dProduct, { data: { productid: dProduct} });
+        console.log('http://localhost:4002/product/remove/'+dProduct);
         
     }
     modifyProduct() {
             //Running Query to Modify Product 
-        axios.post('http://10.106.65.199:4002/product/updateproductinfo', {
+        axios.post('http://localhost:4002/product/updateproductinfo', {
             name: this.state.productquantity,
             price: this.state.storelocationid,
             pid: this.state.productname
@@ -101,14 +101,14 @@ import {Listm, ListItem, FormValidationMessage} from 'react-native-elements';
       }
     addProductWithoutID() {
         //Running Query to Add Product to Database w/o a Product ID
-        axios.post('http://10.106.65.199:4002/product/addProductWithoutID', {
+        axios.post('http://localhost:4002/product/addProductWithoutID', {
             productname: this.state.productquantity,
             price: this.state.storelocationid
         });
     }
     addProductWithID() {
         //Running Query to Add Product to Database w/ a Product ID
-        axios.post('http://10.106.65.199:4002/product/addProductWithID', {
+        axios.post('http://localhost:4002/product/addProductWithID', {
             productname: this.state.productquantity,
             price: this.state.storelocationid,
             pid: this.state.productname
@@ -117,7 +117,7 @@ import {Listm, ListItem, FormValidationMessage} from 'react-native-elements';
     aormProduct () { 
         //Add or Modify a Product by checking if the product ID is already in the databse 
         if(this.state.productname){
-        axios.get('http://10.106.65.199:4002/product/checkid')
+        axios.get('http://localhost:4002/product/checkid')
         .then(res => {  
             const pid = [];
             res.data.forEach(data => {
@@ -260,7 +260,7 @@ class StoreFront extends React.Component {
         }
     }
     componentDidMount() {
-        axios.get('http://10.106.65.199:4002/product')
+        axios.get('http://localhost:4002/product')
            .then(res => {
                const product = [];
                res.data.forEach(data => {
@@ -379,7 +379,7 @@ class StoreSignin extends React.Component {
     }
     CheckAccount =() => {
         //Verifying Password of a Specific User during login 
-        axios.post('http://10.106.65.199:4002/consumer/login', {
+        axios.post('http://localhost:4002/consumer/login', {
 			
 			email: this.state.currentEmail,
             password: this.state.currentPassword
@@ -454,7 +454,7 @@ class BuyerSignin extends React.Component {
     }
     CheckAccount =() => {
         //Verifying Customer Login Information with the Database 
-        axios.post('http://10.106.65.199:4002/consumer/login', {
+        axios.post('http://localhost:4002/consumer/login', {
 			
 			email: this.state.currentEmail,
             password: this.state.currentPassword
@@ -554,7 +554,7 @@ class NewUser extends React.Component {
     addNewEmployee() {
         //Running Query to Add a new Employee to Employee Table
 
-        axios.post('http://10.106.65.199:4002/employee', {
+        axios.post('http://localhost:4002/employee', {
             name: this.state.newUser,
             email: this.state.newEmail,
             ismanager: 0
@@ -709,7 +709,7 @@ class ModifyUser extends React.Component {
 
     ModifyUser() {
         //Change a user's information
-        axios.post('http://10.106.65.199:4002/consumer/changepassword', {
+        axios.post('http://localhost:4002/consumer/changepassword', {
 
             email: this.state.mEmail,
             password: this.state.mPassword
@@ -718,7 +718,7 @@ class ModifyUser extends React.Component {
 
     ChangeCard() {
         //Changing a User's Card Information
-        axios.post('http://10.106.65.199:4002/consumer/updatecardinfo', {
+        axios.post('http://localhost:4002/consumer/updatecardinfo', {
             cardnumber: this.state.mCardNum,
             cardtype: this.state.mCardType,
             expdate: this.state.mCardExpire,
